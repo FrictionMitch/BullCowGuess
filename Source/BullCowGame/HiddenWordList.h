@@ -1,0 +1,61 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+
+const TArray<FString> WordList =
+{
+	TEXT("wishbone"),
+	TEXT("cobra"),
+	TEXT("style"),
+	TEXT("turd")
+	TEXT("careful"),
+	TEXT("anal"),
+	TEXT("anus"),
+	TEXT("arse"),
+	TEXT("ass"),
+	TEXT("ballsack"),
+	TEXT("balls"),
+	TEXT("bastard"),
+	TEXT("bitch"),
+	TEXT("biatch"),
+	TEXT("bloody"),
+	TEXT("blowjob"),
+	TEXT("blow job"),
+	TEXT("bollock"),
+	TEXT("bollok"),
+	TEXT("boner"),
+	TEXT("boob"),
+	TEXT("bugger"),
+	TEXT("butt"),
+	TEXT("buttplug"),
+	TEXT("clitoris"),
+	TEXT("cock"),
+	TEXT("coon"),
+	TEXT("cunt"),
+	TEXT("dick"),
+	TEXT("dildo"),
+	TEXT("dyke"),
+	TEXT("feck"),
+	TEXT("fellate"),
+	TEXT("fellatio"),
+	TEXT("felching"),
+	TEXT("fuck"),
+	TEXT("penis"),
+	TEXT("piss"),
+	TEXT("prick"),
+	TEXT("pube"),
+	TEXT("pussy"),
+	TEXT("scrotum"),
+	TEXT("shit"),
+	TEXT("smegma"),
+	TEXT("spunk"),
+	TEXT("tit"),
+	TEXT("tosser"),
+	TEXT("turd"),
+	TEXT("twat"),
+	TEXT("vagina"),
+	TEXT("wank"),
+	TEXT("fudgepack")
+};
