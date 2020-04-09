@@ -30,8 +30,8 @@ void UBullCowCartridge::SetupGame()
 {
     bGameOver = false;
 
-    MinWordLength = 6;
-    MaxWordLength = 12;
+    MinWordLength = 3;
+    MaxWordLength = 11;
 
     GetValidWords(WordList); // Get Words from master list and make sure they are valid
 
@@ -39,8 +39,6 @@ void UBullCowCartridge::SetupGame()
     Lives = HiddenWord.Len();
 
     ClearScreen();
-
-    PrintLine(FString::Printf(TEXT("%s"), *HiddenWord));
 
     PrintLine(TEXT("Welcome to the \"Bull / Cow\" Game!\n"));
     PrintLine(FString::Printf(TEXT("Guess the %i letter ISOGRAM"), HiddenWord.Len()));
@@ -86,11 +84,10 @@ void UBullCowCartridge::PlayerGuess(const FString &Guess)
                 // Check Lives
                 if (Lives >= 1)
                 {
-                    //// Show the Bulls / Cows
-                    //int32 Bulls, Cows;
-                    //GetBullCows(Guess, Bulls, Cows);
                     FBullCowCount Score = GetBullCows(Guess);
-                    //PrintLine(TEXT("You have %i Bulls and %i Cows"), Bulls, Cows);
+                    PrintLine(TEXT("X's are Incorrect, 0's are Cows"));
+                    PrintLine(Result);
+                    PrintLine(TEXT(" "));
                     PrintLine(TEXT("You have %i Bulls and %i Cows"), Score.Bulls, Score.Cows);
 
                     PrintLine(TEXT("Try again..."));
@@ -153,15 +150,24 @@ TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString> &List)
     return ValidWords;
 }
 
-void UBullCowCartridge::GetBullCows(const FString& Guess, int32& BullCount, int32& CowCount) const
+void UBullCowCartridge::GetBullCows(const FString& Guess, int32& BullCount, int32& CowCount) 
 {
     BullCount = 0;
     CowCount = 0;
+    Result = Guess;
 
+    // Fill Guess Result with X's
+    for (int32 i = 0; i < Guess.Len(); i++)
+    {
+        Result[i] = 'X';
+    }
+
+    // Compare letters from guess to hidden word
     for (int32 i = 0; i < Guess.Len(); i++)
     {
         if (Guess[i] == HiddenWord[i])
         {
+            Result[i] = Guess[i]; // Set correct letter
             BullCount++;
             continue;
         }
@@ -169,6 +175,7 @@ void UBullCowCartridge::GetBullCows(const FString& Guess, int32& BullCount, int3
         {
             if (Guess[i] == HiddenWord[j])
             {
+                Result[i] = '0'; // Set Cow to '0'
                 CowCount++;
                 break;
             }
@@ -176,14 +183,21 @@ void UBullCowCartridge::GetBullCows(const FString& Guess, int32& BullCount, int3
     }
 }
 
-FBullCowCount UBullCowCartridge::GetBullCows(const FString& Guess) const
+FBullCowCount UBullCowCartridge::GetBullCows(const FString& Guess)
 {
     FBullCowCount Count;
+    Result = Guess;
+
+    for (int32 x = 0; x < Guess.Len(); x++)
+    {
+        Result[x] = 'X';
+    }
 
     for (int32 i = 0; i < Guess.Len(); i++)
     {
         if (Guess[i] == HiddenWord[i])
         {
+            Result[i] = Guess[i];
             Count.Bulls++;
             continue;
         }
@@ -191,6 +205,7 @@ FBullCowCount UBullCowCartridge::GetBullCows(const FString& Guess) const
         {
             if (Guess[i] == HiddenWord[j])
             {
+                Result[i] = '0';
                 Count.Cows++;
                 break;
             }
@@ -202,8 +217,8 @@ FBullCowCount UBullCowCartridge::GetBullCows(const FString& Guess) const
 #if WITH_EDITOR
 void UBullCowCartridge::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
-    MinWordLength = 4;
-    MaxWordLength = 8;
+    MinWordLength = 3;
+    MaxWordLength = 11;
 
     Super::PostEditChangeProperty(PropertyChangedEvent);
 }

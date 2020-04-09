@@ -25,18 +25,18 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 	void EndGame();
 	void PlayerGuess(const FString &Guess);
 	void CheckGuessLength(const FString &Guess);
-	void GetBullCows(const FString& Guess, int32& BullCount, int32& CowCount) const;
+	void GetBullCows(const FString& Guess, int32& BullCount, int32& CowCount) ;
 
-	FBullCowCount GetBullCows(const FString& Guess) const;
+	FBullCowCount GetBullCows(const FString& Guess);
 
 	bool IsIsogram(const FString &Guess) const;
 
 	TArray<FString> GetValidWords(const TArray<FString> &List);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Word Length")
-		int32 MinWordLength = 4;
+		int32 MinWordLength = 3;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Word Length")
-		int32 MaxWordLength = 8;
+		int32 MaxWordLength = 11;
 
 #if WITH_EDITOR
 	// Editor-centric code for changing properties
@@ -53,5 +53,6 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 	int32 Lives;
 	int32 IsogramLength;
 	FString HiddenWord;
+	FString Result;
 	TArray<FString> ValidWords;
 };
